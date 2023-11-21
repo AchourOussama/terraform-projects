@@ -12,7 +12,7 @@ output "aws_public_dns" {
 }
 
 resource "aws_instance" "example" {
-  ami           = var.AMIS[var. AWS_REGION]
+  ami           = var.AMIS[var.AWS_REGION]
   instance_type = "t2.micro"
   key_name      = aws_key_pair.mykey.key_name
   #try :  output the keyname
@@ -23,7 +23,7 @@ resource "aws_instance" "example" {
   provisioner "remote-exec" {
     inline = [
       "chmod +x /tmp/script.sh",
-      "sudo sed -i -e 's/\r$//' /tmp/script.sh",  # Remove the spurious CR characters.
+      "sudo sed -i -e 's/\r$//' /tmp/script.sh", # Remove the spurious CR characters.
       "sudo /tmp/script.sh",
     ]
   }
@@ -35,6 +35,6 @@ resource "aws_instance" "example" {
     type        = "ssh"
     user        = "ec2-user"
     private_key = file(var.PATH_TO_PRIVATE_KEY)
-    timeout = "2m"
+    timeout     = "2m"
   }
 }
