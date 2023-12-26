@@ -11,3 +11,6 @@ yum -y install nginx
 
 # make sure nginx is started
 service nginx start
+
+# To Add : to indicate the website directory 
+

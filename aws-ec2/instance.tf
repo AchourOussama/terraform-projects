@@ -7,15 +7,13 @@ output "public_key" {
   value = aws_key_pair.mykey
 }
 
-output "aws_public_dns" {
-  value = aws_instance.example.public_dns
-}
+# To Add : Newtorking environment: VPC , network acl and security group 
 
 resource "aws_instance" "example" {
   ami           = var.AMIS[var.AWS_REGION]
   instance_type = "t2.micro"
   key_name      = aws_key_pair.mykey.key_name
-  #try :  output the keyname
+  # To Add : Ansible for nginx configuration
   provisioner "file" {
     source      = "script.sh"
     destination = "/tmp/script.sh"
@@ -37,4 +35,9 @@ resource "aws_instance" "example" {
     private_key = file(var.PATH_TO_PRIVATE_KEY)
     timeout     = "2m"
   }
+}
+
+
+output "aws_public_dns" {
+  value = aws_instance.example.public_dns
 }
