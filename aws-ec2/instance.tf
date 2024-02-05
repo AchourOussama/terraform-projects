@@ -25,8 +25,8 @@ resource "aws_instance" "example" {
       "sudo /tmp/script.sh",
     ]
   }
-  # common practice : place the connection block near the end of the resource block for readablilty
-  # the connection block executes during the creation of the resource: during 'terraform run'
+  # Common practice : place the connection block near the end of the resource block for readablilty
+  # The connection block executes during the creation of the resource: during 'terraform run'
   connection {
     #since the connection block is nested inside the aws_instance resource block , we extract the instance's attributes using 'self'
     host        = coalesce(self.public_ip, self.private_ip)
